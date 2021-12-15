@@ -1,0 +1,19 @@
+{
+    "name": "interview-kickstart",
+    "private": true,
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "gh": "^2.8.9",
+        "global": "^4.4.0"
+    },
+    "devDependencies": {
+        "prettier": "^2.5.1",
+        "ts-node": "^10.4.0",
+        "typescript": "^4.5.3"
+    }
+}
