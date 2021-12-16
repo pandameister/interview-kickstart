@@ -1,4 +1,4 @@
-import { swap, sortScaffold } from './utils';
+import { swap } from './utils';
 
 /**
  * Pairwise swap until the smallest bubbles to the front
@@ -9,7 +9,7 @@ import { swap, sortScaffold } from './utils';
  * @param values
  * @returns
  */
-function bubbleSort(values: number[]) {
+export function bubbleSort(values: number[]) {
     const len = values.length;
 
     for (let i = 0; i < len - 1; i++) {
@@ -27,5 +27,3 @@ function bubbleSort(values: number[]) {
 
     return values;
 }
-
-sortScaffold(bubbleSort);

@@ -1,39 +1,46 @@
-import { sortScaffold } from './utils';
-
-function arrayCopy(a1: number[], off1: number, a2: number[], off2: number, len: number) {
-    for (let i = 0; i < len; i++) {
-        a1[off1 + i] = a2[off2 + i];
+function arrayCopy(from: number[], to: number[], offset: number) {
+    for (let i = 0; i < from.length; i++) {
+        to[offset + i] = from[i];
     }
+    return to;
 }
 
-function merge(values: number[], start: number, middle: number, end: number) {
+function merge(values: number[], start: number, middle: number, end: number): number[] {
     const temp = new Array(end - start + 1);
 
     let i = start;
     let j = middle + 1;
     let k = 0;
 
-    while (i <= middle || j <= end) {
-        let idx = j > end || values[i] < values[j] ? i++ : j++;
-        temp[k++] = values[idx];
+    const len = temp.length;
+    while (k < len) {
+        if (j > end) {
+            temp[k++] = values[i++];
+        } else if (i > middle) {
+            temp[k++] = values[j++];
+        } else if (values[i] < values[j]) {
+            temp[k++] = values[i++];
+        } else {
+            temp[k++] = values[j++];
+        }
     }
 
-    arrayCopy(values, start, temp, 0, end - start + 1);
+    return arrayCopy(temp, values, start);
 }
 
-function mergeSort(values: number[], start: number, end: number) {
-    if (end - start < 1) {
-        return;
+function mergeSortHelper(values: number[], start: number, end: number): number[] {
+    if (end <= start) {
+        return values;
     }
 
     const middle = start + Math.floor((end - start) / 2);
-    mergeSort(values, start, middle);
-    mergeSort(values, middle + 1, end);
 
-    merge(values, start, middle, end);
+    mergeSortHelper(values, start, middle);
+    mergeSortHelper(values, middle + 1, end);
+
+    return merge(values, start, middle, end);
 }
 
-sortScaffold((values) => {
-    mergeSort(values, 0, values.length - 1);
-    return values;
-});
+export function mergeSort(values: number[]) {
+    return mergeSortHelper(values, 0, values.length - 1);
+}

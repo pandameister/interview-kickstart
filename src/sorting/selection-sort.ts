@@ -1,4 +1,4 @@
-import { swap, sortScaffold } from './utils';
+import { swap } from './utils';
 
 /**
  * Brute force: Find the smallest and bring it to the front
@@ -9,7 +9,7 @@ import { swap, sortScaffold } from './utils';
  * @param values
  * @returns
  */
-function selectionSort(values: number[]) {
+export function selectionSort(values: number[]) {
     const len = values.length;
 
     for (let i = 0; i < len; i++) {
@@ -30,5 +30,3 @@ function selectionSort(values: number[]) {
 
     return values;
 }
-
-sortScaffold(selectionSort);

@@ -1,36 +1,35 @@
-import { swap, sortScaffold } from './utils';
+import { swap } from './utils';
 
-function quickSort(values: number[], start: number, end: number) {
-    if (start >= end) {
-        return;
+function quickSortHelper(values: number[], start: number, end: number) {
+    console.log([start, end]);
+    if (end <= start) {
+        return values;
     }
 
     let left = start + 1;
     let right = end;
+    let pivotValue = values[start];
 
-    while (left < right) {
-        if (values[left] < values[start]) {
+    while (left <= right) {
+        if (values[left] <= pivotValue) {
             left++;
+        } else if (values[right] > pivotValue) {
+            right--;
         } else {
-            while (values[right] > values[start]) {
-                right--;
-            }
-
             swap(left, right, values);
             left++;
             right--;
         }
     }
 
-    swap(start, left, values);
+    swap(start, left - 1, values);
 
-    quickSort(values, start, left - 1);
-    quickSort(values, left + 1, end);
+    quickSortHelper(values, start, left - 1);
+    quickSortHelper(values, left, end);
 
     return values;
 }
 
-sortScaffold((values) => {
-    quickSort(values, 0, values.length - 1);
-    return values;
-});
+export function quickSort(values: number[]) {
+    return quickSortHelper(values, 0, values.length - 1);
+}

@@ -1,5 +1,3 @@
-import { sortScaffold } from './utils';
-
 /**
  * Deck of cards sorting
  * worst case: O(n^2)
@@ -7,7 +5,7 @@ import { sortScaffold } from './utils';
  * @param values
  * @returns
  */
-function insertionSort(values: number[]) {
+export function insertionSort(values: number[]) {
     for (let i = 1; i < values.length; i++) {
         const nextValue = values[i];
 
@@ -21,5 +19,3 @@ function insertionSort(values: number[]) {
 
     return values;
 }
-
-sortScaffold(insertionSort);
