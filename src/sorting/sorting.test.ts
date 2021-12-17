@@ -5,20 +5,21 @@ import { mergeSort } from './merge-sort';
 import { selectionSort } from './selection-sort';
 import { quickSort } from './quick-sort';
 
-const dataset = [[], [1], [2, 1], [9, 1, 10, 2, 3, 50, 26, 6]];
-
-type SortFct = (values: number[]) => number[];
+const datasets = [[], [1], [2, 1], [9, 1, 10, 2, 3, 50, 26, 6]];
 
 function assertTestCases(sort: (values: number[]) => number[]) {
-    dataset.forEach((data) => {
-        const expected = [...data].sort((a, b) => a - b);
-        expect(sort(data)).toEqual(expected);
+    datasets.forEach((data) => {
+        expect(sort([...data])).toEqual(data.sort((a, b) => a - b));
     });
 }
 
 describe('sorting with', () => {
     test('bubble-sort', () => {
         assertTestCases(bubbleSort);
+    });
+
+    test('heap-sort', () => {
+        assertTestCases(heapSort);
     });
 
     test('insertion-sort', () => {
