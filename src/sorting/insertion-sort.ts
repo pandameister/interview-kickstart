@@ -5,7 +5,7 @@
  * @param values
  * @returns
  */
-export function insertionSort(values: number[]) {
+export function insertionSort<T>(values: T[]): T[] {
     for (let i = 1; i < values.length; i++) {
         const nextValue = values[i];
 

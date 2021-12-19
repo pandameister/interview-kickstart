@@ -1,7 +1,6 @@
 import { swap } from './utils';
 
-function quickSortHelper(values: number[], start: number, end: number) {
-    console.log([start, end]);
+function quickSortHelper<T>(values: T[], start: number, end: number) {
     if (end <= start) {
         return values;
     }
@@ -30,6 +29,6 @@ function quickSortHelper(values: number[], start: number, end: number) {
     return values;
 }
 
-export function quickSort(values: number[]) {
+export function quickSort<T>(values: T[]) {
     return quickSortHelper(values, 0, values.length - 1);
 }

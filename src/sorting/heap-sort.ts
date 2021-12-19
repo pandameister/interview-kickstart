@@ -7,11 +7,26 @@ import { swap } from './utils';
  * be represented by an array where for any node at index `i`, the index of index of its parent will be
  * at index `floor(i+1/2) - 1`
  *
+ * Time Complexity Analysis
+ *
+ * TLDR:
+ *    - O(n*log(n))
+ *    - In place
+ *    - Not stable (just need one example to disprove)
+ *
+ *    - Heap operations:
+ *      * insert: O(log(n))
+ *      * extract: O(log(n))
+ *      * change priority: O(log(n))
+ *      * heapify: O(n)
+ *      * sorting: heapify + n * extract = O(n*log(n))
+ *
  * @param values - values to sort
+ * @param rankFct - the rank function
  * @returns the sorted values
  */
-export function heapSort(values: number[]): number[] {
-    const heap = new Heap(values, (value) => value);
+export function heapSort<T>(values: T[], rankFct: HashFct<T, number>): T[] {
+    const heap = new Heap(values, rankFct);
 
     while (!heap.isEmpty()) {
         heap.extractMax();

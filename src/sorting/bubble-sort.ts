@@ -9,7 +9,7 @@ import { swap } from './utils';
  * @param values
  * @returns
  */
-export function bubbleSort(values: number[]) {
+export function bubbleSort<T>(values: T[]): T[] {
     const len = values.length;
 
     for (let i = 0; i < len - 1; i++) {

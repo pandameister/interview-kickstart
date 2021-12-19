@@ -9,7 +9,7 @@ import { swap } from './utils';
  * @param values
  * @returns
  */
-export function selectionSort(values: number[]) {
+export function selectionSort<T>(values: T[]) {
     const len = values.length;
 
     for (let i = 0; i < len; i++) {

@@ -1,7 +1,10 @@
 import { bubbleSort } from './bubble-sort';
+import { bucketSort } from './bucket-sort';
+import { countingSort } from './counting-sort';
 import { heapSort } from './heap-sort';
 import { insertionSort } from './insertion-sort';
 import { mergeSort } from './merge-sort';
+import { radixSort } from './radix-sort';
 import { selectionSort } from './selection-sort';
 import { quickSort } from './quick-sort';
 
@@ -18,8 +21,23 @@ describe('sorting with', () => {
         assertTestCases(bubbleSort);
     });
 
+    test('bucket-sort', () => {
+        assertTestCases((values) =>
+            bucketSort(
+                values,
+                (n) => n,
+                4,
+                (n) => Math.floor(n / 25)
+            )
+        );
+    });
+
+    test('counting-sort', () => {
+        assertTestCases((values) => countingSort(values, 100, (n) => n));
+    });
+
     test('heap-sort', () => {
-        assertTestCases(heapSort);
+        assertTestCases((values) => heapSort(values, (n) => n));
     });
 
     test('insertion-sort', () => {
@@ -28,10 +46,14 @@ describe('sorting with', () => {
     test('merge-sort', () => {
         assertTestCases(mergeSort);
     });
+
+    test('radix-sort', () => {
+        assertTestCases((values) => radixSort(values, (n) => n, 256));
+    });
+
     test('selection-sort', () => {
         assertTestCases(selectionSort);
     });
-
     test('quick-sort', () => {
         assertTestCases(quickSort);
     });
