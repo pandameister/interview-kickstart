@@ -1,4 +1,5 @@
 import { partitionValues, aggregateValues } from './bucket-sort';
+import { createPartitionFct } from './utils';
 
 /**
  * Sorting algo on the structure of the sorting key
@@ -16,6 +17,12 @@ import { partitionValues, aggregateValues } from './bucket-sort';
  * @returns the sorted values
  */
 export function countingSort<T>(values: T[], k: number, hashFct: HashFct<T, number>): T[] {
+    const mid = k / 2;
+    const partitionFct = (n: number) => mid + (n % mid);
+
     // partition the values into buckets all containing values of the same rank and aggregate them back together
-    return aggregateValues(partitionValues(values, k, hashFct), values.length);
+    return aggregateValues(
+        partitionValues(values, k, (n: T) => partitionFct(hashFct(n))),
+        values.length
+    );
 }

@@ -18,7 +18,7 @@ export function radixSort<T>(values: T[], hashFct: HashFct<T, number>, base = 10
 
     for (let i = maxDigits; i > 0; i--) {
         const radixHashFct = createRadixHashFct(maxDigits, i, hashFct, base);
-        values = countingSort<T>(values, 10, radixHashFct);
+        values = countingSort<T>(values, base * 2, radixHashFct);
     }
 
     return values;

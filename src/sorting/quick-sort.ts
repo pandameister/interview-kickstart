@@ -1,7 +1,7 @@
 import { swap } from './utils';
 
 function quickSortHelper<T>(values: T[], start: number, end: number) {
-    if (end <= start) {
+    if (end - start <= 1) {
         return values;
     }
 

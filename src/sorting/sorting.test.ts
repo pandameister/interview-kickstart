@@ -8,7 +8,14 @@ import { radixSort } from './radix-sort';
 import { selectionSort } from './selection-sort';
 import { quickSort } from './quick-sort';
 
-const datasets = [[], [1], [2, 1], [9, 1, 10, 2, 3, 50, 26, 6]];
+const datasets = [
+    [],
+    [1],
+    [2, 1],
+    [9, 1, 10, 2, 3, 50, 26, 6],
+    [-1, 3, 4, 1, 8, -6],
+    [8, -1, 0, 34, 2, -7, 7, 8, -8, 77, -77]
+];
 
 function assertTestCases(sort: (values: number[]) => number[]) {
     datasets.forEach((data) => {
@@ -22,18 +29,12 @@ describe('sorting with', () => {
     });
 
     test('bucket-sort', () => {
-        assertTestCases((values) =>
-            bucketSort(
-                values,
-                (n) => n,
-                4,
-                (n) => Math.floor(n / 25)
-            )
-        );
+        const numPartitions = 8;
+        assertTestCases((values) => bucketSort(values, (n) => n, numPartitions));
     });
 
     test('counting-sort', () => {
-        assertTestCases((values) => countingSort(values, 100, (n) => n));
+        assertTestCases((values) => countingSort(values, 200, (n) => n));
     });
 
     test('heap-sort', () => {

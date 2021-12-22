@@ -1,4 +1,5 @@
 import { mergeSort } from './merge-sort';
+import { createPartitionFct } from './utils';
 
 /**
  * Sorting algo on the structure of the sorting key
@@ -15,12 +16,10 @@ import { mergeSort } from './merge-sort';
  * @param hash - the key hashing function that maps to the key space
  * @returns the sorted values
  */
-export function bucketSort<T>(
-    values: T[],
-    hashFct: HashFct<T, number>,
-    p: number,
-    partitionFct: HashFct<number, number>
-): T[] {
+export function bucketSort<T>(values: T[], hashFct: HashFct<T, number>, p: number): T[] {
+    const mid = p / 2;
+    const partitionFct = (n: number) => mid + (p % mid);
+
     let bucketFct = (value: T) => partitionFct(hashFct(value));
 
     // partition the values into buckets
