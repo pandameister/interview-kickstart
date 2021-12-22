@@ -1,5 +1,4 @@
 import { mergeSort } from './merge-sort';
-import { createPartitionFct } from './utils';
 
 /**
  * Sorting algo on the structure of the sorting key

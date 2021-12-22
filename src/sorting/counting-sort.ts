@@ -1,5 +1,4 @@
 import { partitionValues, aggregateValues } from './bucket-sort';
-import { createPartitionFct } from './utils';
 
 /**
  * Sorting algo on the structure of the sorting key
